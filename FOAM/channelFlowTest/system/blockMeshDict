@@ -1,0 +1,119 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+#include "H.H"
+
+x1 0;
+x2 1;
+
+y1 -1;
+y2 1;
+
+z1 0;
+z2 $H;
+
+un 0.05;
+
+x2 $un;
+
+nx #calc "std::floor(($x2 - $x1) / $un)";
+ny #calc "std::floor(($y2 - $y1) / $un)";
+nz #calc "std::floor(($z2 - $z1) / $un)";
+
+vertices
+(
+    ($x1 $y1 $z1) //0
+    ($x2 $y1 $z1) //1
+    ($x2 $y2 $z1) //2
+    ($x1 $y2 $z1) //3
+    ($x1 $y1 $z2) //4
+    ($x2 $y1 $z2) //5
+    ($x2 $y2 $z2) //6
+    ($x1 $y2 $z2) //7
+);
+
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) ($nx $ny $nz) simpleGrading (1 1 1)
+);
+
+edges
+(
+//    arc 0 3 ($x1 0 $z3)
+//    arc 1 2 ($x2 0 $z3)
+);
+
+boundary
+(
+    inlet
+    {
+        type cyclic;
+        neighbourPatch  outlet;
+        faces 
+        (
+            (4 7 3 0)
+        );
+    }
+
+    outlet
+    {
+        type cyclic;
+        neighbourPatch  inlet;
+        faces 
+        (
+            (1 2 6 5)
+        );
+    }
+
+
+    top
+    {
+        type symmetryPlane;
+        faces
+        (
+            (4 5 6 7)        
+
+        );
+    }
+
+    bottom
+    {
+        type wall;
+        faces
+        (
+            (3 2 1 0)
+        );
+    }
+
+    sides
+    {
+        type wall;
+        faces
+        (
+            (2 3 7 6)
+            (0 1 5 4)            
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

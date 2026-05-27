@@ -1,0 +1,5 @@
+#postProcess -func sampleSets
+#simpleFoam -postProcess -func meanWallShearStress
+#simpleFoam -postProcess -func wallShearStress
+#postProcess -func "patchAverage(name=bottom, fields=(wallShearStress))"
+postProcess -func sampleLines

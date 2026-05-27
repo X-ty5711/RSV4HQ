@@ -1,0 +1,127 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+sampleLines
+{
+    
+    type            sets;
+    libs            ("libsampling.so");
+
+    writeControl    writeTime;
+
+    setFormat       raw;
+    fields          (U p k omega nut);
+
+    interpolationScheme cellPointFace;
+
+    sets
+    (
+
+        line1
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 1);
+            end     (0 1 1);
+            nPoints 200;
+        }
+        line2
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 0.8);
+            end     (0 1 0.8);
+            nPoints 200;
+        }
+        line3
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 0.6);
+            end     (0 1 0.6);
+            nPoints 200;
+        }
+        line4
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 0.4);
+            end     (0 1 0.4);
+            nPoints 200;
+        }
+        line5
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 0.2);
+            end     (0 1 0.2);
+            nPoints 200;
+        }
+        line6
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 -1 0);
+            end     (0 -1 2);
+            nPoints 200;
+        }
+        line7
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 -0.8 0);
+            end     (0 -0.8 2);
+            nPoints 200;
+        }
+        line8
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 -0.6 0);
+            end     (0 -0.6 2);
+            nPoints 200;
+        }
+        line9
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 -0.4 0);
+            end     (0 -0.4 2);
+            nPoints 200;
+        }
+        line10
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 -0.2 0);
+            end     (0 -0.2 2);
+            nPoints 200;
+        } 
+        line11
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 0 0);
+            end     (0 0 2);
+            nPoints 200;
+        } /*
+        boundaryPoints1
+        {
+            type        boundaryPoints;
+            patches     (bottom);
+            points
+            (
+                (0.5 0 -4.5)
+            );
+            maxDistance 0.01;
+            axis        xyz;
+        } */
+
+    );      
+}
+// ************************************************************************* //

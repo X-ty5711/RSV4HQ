@@ -1,0 +1,4 @@
+Code/Multi-scale[[:space:]]Rectangular[[:space:]]Flow/ResNetdatapro3S_20_hoverb1 filter=lfs diff=lfs merge=lfs -text
+Data/datasets/Random5000.dat filter=lfs diff=lfs merge=lfs -text
+Code/Multi-scale[[:space:]]Rectangular[[:space:]]Flow/ResNetdatapro3S_20_hoverb0 filter=lfs diff=lfs merge=lfs -text
+Code/Multi-scale[[:space:]]Rectangular[[:space:]]Flow/ResNetdatapro3S_20_hoverb0.5 filter=lfs diff=lfs merge=lfs -text

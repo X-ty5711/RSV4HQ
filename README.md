@@ -5,7 +5,7 @@ by-nc-sa-white](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://cr
 
 *RSV4H&Q* is a work developed to use deep learning for river discharge inversion using surface velocity distribution. It is based on pytorch.
 
-- Physics-informed datasets: Generated via OpenFOAM with varied channel widths (1~10 m), water depths (0.3~10 m), and discharges, embedding real river flow mechanisms.
+- Physics-informed datasets: Generated via OpenFOAM with varied channel widths (1-10 m), water depths (0.3-10 m), and discharges, embedding real river flow mechanisms.
 - Core optimizations: Data gradient enhancement, GELU activation function, and bank division/cross-validation to exclude abnormal cross-sections.
 - Strong validation: R^2 > 0.99 for simulated data and MSE < 0.36 (m^3/s)^2 for real-river (Swindale Beck) predictions, bypassing the need for bathymetric surveys.
 

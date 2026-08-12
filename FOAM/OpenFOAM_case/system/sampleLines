@@ -1,0 +1,58 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+// Sampling of the model input profiles:
+//   line1 - transverse surface-velocity profile (input to the DL model)
+//   line2 - vertical velocity profile (physical-consistency check)
+// Output is written to postProcessing/sampleLines/<time>/.
+
+sampleLines
+{
+    
+    type            sets;
+    libs            ("libsampling.so");
+
+    writeControl    writeTime;
+
+    setFormat       raw;
+    fields          (U p k omega nut);
+
+    interpolationScheme cellPointFace;
+
+    sets
+    (
+
+        // line1: transverse surface-velocity profile. Sampled in the top cell
+        // layer, slightly below the rigid lid (z = H - un/2 = 1.975 m for the
+        // demo H = 2 m, un = 0.05 m). This profile is the input to the
+        // deep-learning discharge-inversion model (paper, Secs. 2.1-2.2).
+        // NOTE: if you change H in system/H.H, set z = H - un/2 here.
+        line1
+        {
+            type    lineUniform;
+            axis    y;
+            start   (0 -1 1.975);
+            end     (0 1 1.975);
+            nPoints 200;
+        }
+
+        // line2: vertical velocity profile across the full water depth
+        // (z = 0 .. H), used for the entropy-based physical-consistency check
+        // (paper, Sec. 2.1).
+        line2
+        {
+            type    lineUniform;
+            axis    z;
+            start   (0 0 0);
+            end     (0 0 2);
+            nPoints 200;
+        }
+
+    );      
+}
+// ************************************************************************* //

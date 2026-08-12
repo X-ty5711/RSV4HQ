@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this repository or the associated method, please cite the paper."
+title: "JoH_CFD-trained_case: CFD-trained deep learning for bathymetry-free river discharge estimation"
+authors:
+  - family-names: Xu
+    given-names: Tianyi
+  - family-names: Xu
+    given-names: Yuncheng
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: He
+    given-names: Dongyang
+  - family-names: Yu
+    given-names: Xuan
+date-released: "2026-08-11"
+license: MIT
+keywords:
+  - river discharge estimation
+  - surface velocimetry
+  - bathymetry-free inversion
+  - deep learning
+  - OpenFOAM
+  - computational fluid dynamics
+preferred-citation:
+  type: article
+  title: "Discharge estimation from surface velocity without bathymetry: a CFD-trained deep learning approach"
+  authors:
+    - family-names: Xu
+      given-names: Tianyi
+    - family-names: Xu
+      given-names: Yuncheng
+    - family-names: He
+      given-names: Dongyang
+    - family-names: Yu
+      given-names: Xuan
+  journal: "Journal of Hydrology"
+  year: 2026
+  note: "in review"

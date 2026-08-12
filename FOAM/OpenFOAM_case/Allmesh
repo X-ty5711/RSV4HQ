@@ -1,0 +1,32 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+#------------------------------------------------------------------------------
+# Allmesh: reset the case and build the blockMesh grid.
+#
+# Steps:
+#   1. ./Allclean        - remove mesh, results and post-processing
+#   2. Restore pristine initial fields: 0.orig/ -> 0/
+#   3. Restore the default k-omega SST turbulence model
+#      (constant/momentumTransport.kOmegaSST -> constant/momentumTransport)
+#   4. blockMesh          - build the uniform rectangular-channel mesh
+#
+# Key parameters (see README.md):
+#   - H: water depth [m]       -> system/H.H
+#   - B: channel width [m]     -> system/blockMeshDict (y1 .. y2)
+#   - V: target mean velocity  -> constant/Ubar.H
+#   - un: uniform cell size    -> system/blockMeshDict (0.05 m, paper default)
+#------------------------------------------------------------------------------
+
+./Allclean
+
+rm -r 0
+cp 0.orig 0 -r
+cp constant/momentumTransport.kOmegaSST constant/momentumTransport
+
+runApplication -append blockMesh
+
+#------------------------------------------------------------------------------

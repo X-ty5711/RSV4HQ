@@ -1,0 +1,11 @@
+
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+#------------------------------------------------------------------------------
+# postProcess: re-extract the sampled profiles (system/sampleLines) from the
+# latest time. Useful for re-sampling after a run.
+# Output is written under postProcessing/sampleLines/<time>/.
+#------------------------------------------------------------------------------
+
+postProcess -func sampleLines

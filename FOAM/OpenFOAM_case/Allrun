@@ -1,0 +1,29 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+#------------------------------------------------------------------------------
+# Allrun: build mesh and run the fully-developed channel-flow simulation.
+#
+# Pipeline:
+#   1. ./Allmesh                        - reset case and build blockMesh grid
+#   2. decomposePar                     - decompose mesh for parallel run
+#   3. runParallel simpleFoam           - steady RANS (k-omega SST, SIMPLE)
+#   4. reconstructPar -latestTime       - reconstruct field data
+#   5. rm processor* -r                 - remove decomposed case
+#   6. postProcess -func sampleLines    - sample the transverse surface-velocity
+#                                         profile (DL-model input) and the
+#                                         vertical profile (paper, Sec. 2.2)
+#------------------------------------------------------------------------------
+
+./Allmesh
+
+runApplication decomposePar 
+
+runParallel -append simpleFoam
+runApplication -append reconstructPar -latestTime
+rm processor* -r
+runApplication -append postProcess -func sampleLines -latestTime
+#------------------------------------------------------------------------------

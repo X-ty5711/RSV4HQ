@@ -82,7 +82,7 @@ Creative Commons Attribution-NonCommercial 4.0 International License
 | Yuncheng Xu, Ph.D.
 | Associate Professor
 
-| College of Water Resources and Civil Engineering
+| College of Water Resources and Intelligence Engineering
 | China Agricultural University
 
 E-mail: ycxu@cau.edu.cn; ycxu1990@gmail.com
@@ -92,7 +92,7 @@ Web: <http://xuyuncheng.com>
 | Tianyi Xu
 | Graduate Research Assistant
 
-| College of Water Resources and Civil Engineering
+| College of Water Resources and Intelligence Engineering
 | China Agricultural University
 
 E-mail: xuty@cau.edu.cn
